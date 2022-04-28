@@ -1,16 +1,25 @@
-#include <iostream>
-#include <vector>
-#include <deque>
-#include <algorithm>
-#include <cmath>
-#include <fstream>
-
+#include <bits/stdc++.h>
 using namespace std;
 
 struct pt{
     int id;
     double x,y;
 };
+
+struct item
+{
+    double weight, value, x, y, id;
+};
+
+void show_mat(vector<vector<item>> &M);
+
+vector<item> knapsack (vector<item>& it, int K);
+
+vector<vector<item>> k_means(vector <item>& points, double mean);
+
+pair<double, int> cvrp(vector<item>& pnt, int V, int c);
+
+//double cvrp(vector<item>& points, int V, int c);
 
 double dist( pt a, pt b );
 
