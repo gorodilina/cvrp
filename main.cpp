@@ -18,7 +18,9 @@ int main()
     }
 
     //выводим кластеры
-    vector<vector<item>> clusters=k_means(points, mean);
+    vector<vector<item>> clusters(2);
+    k_means(clusters, points, mean);
+    //vector<vector<item>> clusters=k_means(points, mean);
     double ANS=0;
     if (N<250)
     {
