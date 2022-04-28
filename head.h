@@ -13,9 +13,9 @@ struct item
 
 void show_mat(vector<vector<item>> &M);
 
-vector<item> knapsack (vector<item>& it, int K);
+vector<item>& knapsack (vector <vector<vector<item>>>& used, vector<item>& it, int K);
 
-vector<vector<item>> k_means(vector <item>& points, double mean);
+void k_means(vector<vector<item>>& clusters, vector <item>& points, double mean);
 
 pair<double, int> cvrp(vector<item>& pnt, int V, int c);
 
