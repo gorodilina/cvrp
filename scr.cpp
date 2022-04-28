@@ -20,11 +20,11 @@ void show_mat(vector<vector<item>> &M)
     cout<<endl;
 }
 
-vector<item> knapsack (vector<item>& it, int K)
+vector<item>& knapsack (vector <vector<vector<item>>>& used, vector<item>& it, int K)
 {
     int N=it.size();
     vector<vector<int>> w(K+1, vector<int>(N+1));
-    vector <vector<vector<item>>> used(K+1, vector<vector<item>>(N+1));
+    //vector <vector<vector<item>>> used(K+1, vector<vector<item>>(N+1));
     for (int i=0; i<N; i++)
     {
         for (int j=0; j<K; j++)
@@ -40,7 +40,7 @@ vector<item> knapsack (vector<item>& it, int K)
                 {
                     w[j+1][i+1]=w[j+1-it[i].weight][i]+it[i].value;
                     used[j+1][i+1]=used[j+1-it[i].weight][i];
-                    used[j+1][i+1].push_back(it[i]/*.value*/);
+                    used[j+1][i+1].push_back(it[i]);
                 }
             }
             else
@@ -54,10 +54,10 @@ vector<item> knapsack (vector<item>& it, int K)
 }
 
 
-vector<vector<item>> k_means(vector <item>& points, double mean)
+void k_means(vector<vector<item>>& clusters, vector <item>& points, double mean)
 {
     int N=points.size();
-    vector<vector<item>> clusters(2);
+    //vector<vector<item>> clusters(2);
     for (int i=0; i<N; i++)
     {
         if (points[i].x>mean)
@@ -67,7 +67,7 @@ vector<vector<item>> k_means(vector <item>& points, double mean)
     }
     clusters[0].push_back(points[0]);
     clusters[1].push_back(points[0]);
-    return clusters;
+    //return clusters;
 }
 
 pair<double, int> cvrp(vector<item>& pnt, int V, int c)
@@ -78,7 +78,12 @@ pair<double, int> cvrp(vector<item>& pnt, int V, int c)
     double ANS=0;
     for (int i=0; i<V; i++)
     {
-            usedused.push_back(knapsack(p, c));
+            int N=p.size();
+            int K=c;
+            vector <vector<vector<item>>> used(K+1, vector<vector<item>>(N+1));
+            //vector<item>& knap=knapsack(used, p, c);
+            usedused.push_back(knapsack(used, p, c));
+            used.clear();
             for (int j=0; j<usedused[i].size(); j++)
                 {
                     for (int k=0; k<p.size(); k++)
@@ -233,3 +238,4 @@ void Path::show(){
     for(auto p: path)
         cout<<p.id<<" ";
 }
+
